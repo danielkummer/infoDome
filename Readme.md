@@ -9,8 +9,6 @@
 
 The InfoDome is an IoT project using an Arduino yùn to fetch and display remote information as well as temperature and RTC data through four [QS30-1](https://www.google.ch/search?q=QS30-1) nixie tubes.
 
-A demo video can be found on ![YouTube](https://youtu.be/v8ImjMalxpY).
-
 ![1](img/dome1.jpg)
 ![2](img/dome2.jpg)
 ![3](img/dome3.jpg)
