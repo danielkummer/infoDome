@@ -3,11 +3,13 @@
 
 # InfoDome
 
+[![InfoDome Demo](http://i.imgur.com/PVg4ICU.png?1)](http://www.youtube.com/watch?v=v8ImjMalxpY)
+
 ## Introduction
 
 The InfoDome is an IoT project using an Arduino yùn to fetch and display remote information as well as temperature and RTC data through four [QS30-1](https://www.google.ch/search?q=QS30-1) nixie tubes.
 
-A demo video can be found on [YouTube](https://youtu.be/v8ImjMalxpY).
+A demo video can be found on ![YouTube](https://youtu.be/v8ImjMalxpY).
 
 ![1](img/dome1.jpg)
 ![2](img/dome2.jpg)
@@ -68,7 +70,7 @@ The file contains three definitions:
 ## Startup
 
 The startup process takes a fair amount of time for the Yun to boot completely. During this time the dome lights are on but not animated.
-After the dome is ready, it cycles through a short animation an loads the initial data, displaying 1010 while doing do. The time mode will be shown after completion.
+After the dome is ready, it cycles through a short animation an loads the initial data, displaying 1010 while doing do. The looper mode will be set after completion.
 
 ## Operate
 
@@ -82,7 +84,7 @@ The Dome will periodically fetch new information from Temboo. Sadly this is a bl
 
 - Flash ambient light when mode changes - the number of flashes indicates the new mode
 - Flash ambient light when an i2c module is malfunctioning
-- Cycling mode is indicated by the rainbow led on the bottom of the dome
+- Looper mode is indicated by the rainbow led on the bottom of the dome
 - Data loading is indicated by the number "1010"
 - Ambient light is pulsing in different modes
 
@@ -132,7 +134,7 @@ Each machine serves different purposes with different execution times.
 | Ambient | Control the ambient leds based on the mode |
 | Detect | Detect and debounce hand movements |
 | Data | Download data via WiFi from Tembo |
-| Cylcer| If turned on, cycle to a new mode after a specific interval until turned off |
+| Looper | If turned on, cycle to a new mode after a specific interval until turned off |
 
 ### Timers
 
