@@ -137,13 +137,13 @@ Each machine serves different purposes with different execution times.
 There are several timers used to control the time machine.
 By adjusting them the base operation intervals can be altered.
 
-| Name  | Value |
-|-------|-------|
-| BOOT_TIMEOUT          |  5s |    
-| TEMBOO_UPDATE_INTERVAL|  15min |
-| DETECTION_INTERVAL    |  300ms |     
-| LOOPER_INTERVAL       |  20s |
-| PULSE_ON_NEW_VALUES_TIMEOUT | 4.2s |
+| Name  | Description | Value |
+|-------|-------------|-------|
+| BOOT_TIMEOUT          | Timeout for booting animation | 5s |    
+| TEMBOO_UPDATE_INTERVAL| Remote update interval | 15min |
+| DETECTION_INTERVAL    | Distance sensor check interval (*2) | 300ms |     
+| LOOPER_INTERVAL       | Looper mode timeout | 20s |
+| PULSE_ON_NEW_VALUES_TIMEOUT | Tube pulse duration for new values | 4.2s |
 
 ### Online Data
 
