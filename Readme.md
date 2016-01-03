@@ -1,5 +1,5 @@
 
-<div style="text-align:center">![I](/img/i.png)</div>
+![I](/img/i.png)
 
 # InfoDome
 
@@ -7,21 +7,15 @@
 
 The InfoDome is an IoT project using an Arduino yùn to fetch and display remote information as well as temperature and RTC data through four [QS30-1](https://www.google.ch/search?q=QS30-1) nixie tubes.
 
-<table border="0">
-  <tr>
-    <th>![1](/img/dome1.jpg)</th>
-    <th>![2](/img/dome2.jpg)</th>
-    <th>![3](/img/dome3.jpg)</th>
-    <th>![4](/img/dome4.jpg)</th>
-  </tr>
-</table>
+![1](/img/dome1.jpg)
+![2](/img/dome2.jpg)
+![3](/img/dome3.jpg)
+![4](/img/dome4.jpg)
 
 ## Features
 
 - 7 different modes
 - Distance sensor detecting :hand: movements to manually switch between the modes
-- 4 vintage QS30 nixie tubes
-- 3 Adafruit Neopixels
 - RTC Clock
 - Temperature / pressure module
 - WiFi
@@ -144,7 +138,7 @@ There are several timers used to control the time machine.
 By adjusting them the base operation intervals can be altered.
 
 | Name  | Value |
-|--|--|
+|-------|-------|
 | BOOT_TIMEOUT          |  5s |    
 | TEMBOO_UPDATE_INTERVAL|  15min |
 | DETECTION_INTERVAL    |  300ms |     
