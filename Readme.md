@@ -1,5 +1,5 @@
 
-![I](/img/i.png)
+![I](img/i.png)
 
 # InfoDome
 
@@ -7,10 +7,12 @@
 
 The InfoDome is an IoT project using an Arduino yùn to fetch and display remote information as well as temperature and RTC data through four [QS30-1](https://www.google.ch/search?q=QS30-1) nixie tubes.
 
-![1](/img/dome1.jpg)
-![2](/img/dome2.jpg)
-![3](/img/dome3.jpg)
-![4](/img/dome4.jpg)
+A demo video can be found on [YouTube](https://youtu.be/v8ImjMalxpY).
+
+![1](img/dome1.jpg)
+![2](img/dome2.jpg)
+![3](img/dome3.jpg)
+![4](img/dome4.jpg)
 
 ## Features
 
@@ -105,7 +107,7 @@ The Dome will periodically fetch new information from Temboo. Sadly this is a bl
 
 ### Circuit diagram
 
-![Circuit diagram](/res/infoDome.png)
+![Circuit diagram](res/infoDome.png)
 
 ## Software
 
@@ -121,7 +123,7 @@ State machines are handling data input and output. SMLib allows or _enforces_ a 
 
 Each machine serves different purposes with different execution times.
 
-![State machine](/res/infodome_statemachine.png)
+![State machine](res/infodome_statemachine.png)
 
 | Machine | Description |
 |---------|-------------|
@@ -203,10 +205,10 @@ Check the Arduino Yùn Tutorials for more information.
 # Some pictures
 
 
-![Closeup top](/img/closeup_top.jpg)
+![Closeup top](img/closeup_top.jpg)
 
-![Turned off](/img/infodome_light.jpg)
+![Turned off](img/infodome_light.jpg)
 
-![Backside](/img/back.jpg)
+![Backside](img/back.jpg)
 
-![Sensor](/img/sensor.jpg)
+![Sensor](img/sensor.jpg)
