@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Infodome by danielkummer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Infodome</h1>
+      <h2 class="project-tagline">The InfoDome is an IoT project using an Arduino yùn to fetch and display remote information as well as temperature and RTC data through four [QS30-1](https://www.google.ch/search?q=QS30-1) nixie tubes.</h2>
+      <a href="https://github.com/danielkummer/infoDome" class="btn">View on GitHub</a>
+      <a href="https://github.com/danielkummer/infoDome/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/danielkummer/infoDome/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p><img src="img/i.png" alt="I"></p>
+
+<h1>
+<a id="infodome" class="anchor" href="#infodome" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>InfoDome</h1>
+
+<p><a href="http://www.youtube.com/watch?v=v8ImjMalxpY"><img src="http://i.imgur.com/PVg4ICU.png?1" alt="InfoDome Demo"></a></p>
+
+<h2>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h2>
+
+<p>The InfoDome is an IoT project using an Arduino yùn to fetch and display remote information as well as temperature and RTC data through four <a href="https://www.google.ch/search?q=QS30-1">QS30-1</a> nixie tubes.</p>
+
+<p><img src="img/dome1.jpg" alt="1">
+<img src="img/dome2.jpg" alt="2">
+<img src="img/dome3.jpg" alt="3">
+<img src="img/dome4.jpg" alt="4"></p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>7 different modes</li>
+<li>Distance sensor detecting <img class="emoji" title=":hand:" alt=":hand:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/270b.png" height="20" width="20" align="absmiddle"> movements to manually switch between the modes</li>
+<li>RTC Clock</li>
+<li>Temperature / pressure module</li>
+<li>WiFi</li>
+<li>Updates RTC time via WiFi</li>
+<li>Fetch remote data via WiFi</li>
+</ul>
+
+<h2>
+<a id="modes" class="anchor" href="#modes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Modes</h2>
+
+<table>
+<thead>
+<tr>
+<th>Number</th>
+<th>Mode</th>
+<th>Format</th>
+<th>Tube Color</th>
+<th>Light Color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Time</td>
+<td>hh:mm</td>
+<td>cyan</td>
+<td>cyan, pulse</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Date</td>
+<td>mm.dd</td>
+<td>orange</td>
+<td>orange, pulse</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Temperature</td>
+<td>xx.xx'</td>
+<td>blue</td>
+<td>blue, pulse</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Mail</td>
+<td>xxxx</td>
+<td>white</td>
+<td>white</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Git</td>
+<td>xxxx</td>
+<td>red</td>
+<td>orange</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Jira</td>
+<td>xxxx</td>
+<td>green</td>
+<td>green</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Cycling</td>
+<td>-</td>
+<td>-</td>
+<td>rainbow</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>The InfoDome needs to be connected to the local Wifi network. A full tutorial can be found on the official <a href="https://www.arduino.cc/en/Guide/ArduinoYun#toc14">guides page</a>.</p>
+
+<p>Here's the short form:</p>
+
+<ul>
+<li>Reset the wifi if joining a new network using the Wifi reset button:</li>
+</ul>
+
+<p><img src="res/yun_mini_diagram_back.jpg" alt="Yun mini diagram"></p>
+
+<ul>
+<li>Press and hold for 5 seconds until the blue WLAN led starts blinking.</li>
+<li>In factory reset mode, the default IP address is <em>192.168.240.1</em>
+</li>
+<li>You can now connect to the WiFi network that appears with the SSID name "Linino-XXXXXXXXXXXX" (X = MAC address)</li>
+<li>Enter 192.168.240.1 or "<a href="http://linino.local">http://linino.local</a>" in a browser.</li>
+</ul>
+
+<p>Note that restoring the WiFi configuration will cause the reboot of the linux environment.</p>
+
+<h3>
+<a id="temboo-account-data" class="anchor" href="#temboo-account-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Temboo Account Data</h3>
+
+<p>In order to authenticate against Temboo you must download your custom TembooAccount.h header file from the Temboo website and place it in the code directory.</p>
+
+<p>The file contains three definitions:</p>
+
+<pre><code>#define TEMBOO_ACCOUNT ""
+#define TEMBOO_APP_KEY_NAME ""
+#define TEMBOO_APP_KEY ""
+</code></pre>
+
+<h2>
+<a id="startup" class="anchor" href="#startup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Startup</h2>
+
+<p>The startup process takes a fair amount of time for the Yun to boot completely. During this time the dome lights are on but not animated.
+After the dome is ready, it cycles through a short animation an loads the initial data, displaying 1010 while doing do. The looper mode will be set after completion.</p>
+
+<h2>
+<a id="operate" class="anchor" href="#operate" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Operate</h2>
+
+<p>To switch between the modes place your hand near the infrared sensor. If the InfoDome detects it, it'll blink. The number of blinks also indicates the mode it's about to enter.</p>
+
+<p>The "cycling" mode is a special mode where all other modes are automatically cycled. You can leave it by again placing your hand near the sensor.</p>
+
+<p>The Dome will periodically fetch new information from Temboo. Sadly this is a blocking operation, in the meantime enjoy the digits <img class="emoji" title=":one:" alt=":one:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/0031-20e3.png" height="20" width="20" align="absmiddle"><img class="emoji" title=":zero:" alt=":zero:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/0030-20e3.png" height="20" width="20" align="absmiddle"><img class="emoji" title=":one:" alt=":one:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/0031-20e3.png" height="20" width="20" align="absmiddle"><img class="emoji" title=":zero:" alt=":zero:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/0030-20e3.png" height="20" width="20" align="absmiddle"></p>
+
+<h2>
+<a id="other-functions" class="anchor" href="#other-functions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Other Functions</h2>
+
+<ul>
+<li>Flash ambient light when mode changes - the number of flashes indicates the new mode</li>
+<li>Flash ambient light when an i2c module is malfunctioning</li>
+<li>Looper mode is indicated by the rainbow led on the bottom of the dome</li>
+<li>Data loading is indicated by the number "1010"</li>
+<li>Ambient light is pulsing in different modes</li>
+</ul>
+
+<h2>
+<a id="hardware" class="anchor" href="#hardware" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hardware</h2>
+
+<h3>
+<a id="electronics" class="anchor" href="#electronics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Electronics</h3>
+
+<ul>
+<li><a href="http://www.arduino.org/products/boards/4-arduino-boards/arduino-yun-mini">Arduino Yùn mini</a></li>
+<li>4x <a href="http://www.play-zone.ch/en/elektronik-kit-zubehoer/avr-arduino-freeduino/zubehor/a-fantastic-nixie-module-for-arduino-arduino-compatible-v2-0-0.html">A Fantastic Nixie Module for Arduino V2.0.0</a>
+</li>
+<li>
+<a href="https://www.adafruit.com/products/391">Adafruit BMP085</a> Temperature Sensor</li>
+<li>
+<a href="https://www.adafruit.com/products/264">Adafruit DS1307</a> Real Time Clock</li>
+<li>
+<a href="https://www.sparkfun.com/products/242">Sharp GP2Y0A21YK</a> Infrared Distance Sensor</li>
+<li>3x <a href="https://www.adafruit.com/category/168">Ardafruit NeoPixel</a>
+</li>
+<li>1x Micro USB Breakout</li>
+</ul>
+
+<h3>
+<a id="other-parts" class="anchor" href="#other-parts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Other Parts</h3>
+
+<ul>
+<li>Decorative glass tube from Interio</li>
+<li>Glass tube stand from Interio</li>
+<li>3x old HDD</li>
+<li>Metal rods / screws</li>
+<li>3d printed "Illuminators"</li>
+</ul>
+
+<h3>
+<a id="circuit-diagram" class="anchor" href="#circuit-diagram" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Circuit diagram</h3>
+
+<p><img src="res/infoDome.png" alt="Circuit diagram"></p>
+
+<h2>
+<a id="software" class="anchor" href="#software" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Software</h2>
+
+<h3>
+<a id="technical-architecture" class="anchor" href="#technical-architecture" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Technical Architecture</h3>
+
+<p>The goal was to design a lightweight control system to operate the Dome sensors and peripherals. Because multiple operations should be done in parallel and independent of each other (read hand sensor, fade ambient lights) blocking the processor should be avoided at any cost.</p>
+
+<p>The SMLib library helps to achieve this by turning the whole system into state machines which are able to execute periodically without blocking each other.</p>
+
+<p>A different approach for a typical Arduino project was taken to keep the code flexible and fast.</p>
+
+<p>State machines are handling data input and output. SMLib allows or <em>enforces</em> a layered system where one machine controls the execution cycle of other machines.</p>
+
+<p>Each machine serves different purposes with different execution times.</p>
+
+<p><img src="res/infodome_statemachine.png" alt="State machine"></p>
+
+<table>
+<thead>
+<tr>
+<th>Machine</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Master</td>
+<td>Executes all other state machines and handles the booting process.</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>Display values on the nixie tubes based on the current mode</td>
+</tr>
+<tr>
+<td>Ambient</td>
+<td>Control the ambient leds based on the mode</td>
+</tr>
+<tr>
+<td>Detect</td>
+<td>Detect and debounce hand movements</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>Download data via WiFi from Tembo</td>
+</tr>
+<tr>
+<td>Looper</td>
+<td>If turned on, cycle to a new mode after a specific interval until turned off</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="timers" class="anchor" href="#timers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Timers</h3>
+
+<p>There are several timers used to control the time machine.
+By adjusting them the base operation intervals can be altered.</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BOOT_TIMEOUT</td>
+<td>Timeout for booting animation</td>
+<td>5s</td>
+</tr>
+<tr>
+<td>TEMBOO_UPDATE_INTERVAL</td>
+<td>Remote update interval</td>
+<td>15min</td>
+</tr>
+<tr>
+<td>DETECTION_INTERVAL</td>
+<td>Distance sensor check interval (*2)</td>
+<td>300ms</td>
+</tr>
+<tr>
+<td>LOOPER_INTERVAL</td>
+<td>Looper mode timeout</td>
+<td>20s</td>
+</tr>
+<tr>
+<td>PULSE_ON_NEW_VALUES_TIMEOUT</td>
+<td>Tube pulse duration for new values</td>
+<td>4.2s</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="online-data" class="anchor" href="#online-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Online Data</h3>
+
+<p>The online data is aggregated using the "Choreo Editor" <a href="https://temboo.com/download/twyla">Twyla</a> from the Arduino built-in IoT Stack <a href="https://temboo.com/">Temboo</a>.
+Temboo is used in this project because it requires no additional
+software in order to work - this is a good choice because the Arduino Yùn mini doesn't ship with an sd card reader, so we can't easily extend its very limited storage.</p>
+
+<p>The editor takes some getting used to but is, all in all, quite easily understandable. Using the editor I've created a custom "choreo" or task which does these sequential tasks in order:</p>
+
+<ol>
+<li>Fetch open merge requests from git server</li>
+<li>Fetch open tickes from Atlassian Jira API</li>
+<li>Fetch unread email from Google API</li>
+<li>Fetch current local time for RTC adjustments</li>
+</ol>
+
+<p>The great thing about the editor is that choreos are directly testable <img class="emoji" title=":smile:" alt=":smile:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f604.png" height="20" width="20" align="absmiddle">.</p>
+
+<p>A run of this combined choreo returns:</p>
+
+<pre><code>    SUCCESSFUL COMPLETION:
+    OUTPUT VARIABLES:
+
+    currentTime = 19:02 16-01-03
+    totalEmailCount = 45
+    totalJiraTickets = 39
+    totalMergeRequests = 1
+</code></pre>
+
+<p>This data can be fetched and parsed by the Arduino Temboo library.</p>
+
+<h3>
+<a id="libraries" class="anchor" href="#libraries" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Libraries</h3>
+
+<ul>
+<li><a href="http://playground.arduino.cc/Code/SMlib">SMLib</a></li>
+<li><a href="https://github.com/adafruit/RTClib">RTCLib</a></li>
+<li><a href="https://github.com/adafruit/Adafruit_BMP085_Unified">Adafruit BMP085</a></li>
+<li><a href="https://github.com/adafruit/Adafruit_Sensor">Adafruit Sensor</a></li>
+<li>Temboo (builtin)</li>
+<li><a href="http://www.nixieclock.org/?p=541">NixieTube</a></li>
+</ul>
+
+<h1>
+<a id="caveats" class="anchor" href="#caveats" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Caveats</h1>
+
+<p>The biggest obstacle in this project by far is the extremely limited program storage. With only 28,672 bytes (or 0.001 kbytes) the options are limited and minimal sized code is key.
+The source code is currently occupying 99% program storage.
+Imagine what could be done with even more space!</p>
+
+<p>Because the temperature sensor is placed inside the dome, it'll read the inner temperature which will be a little over the current room temperature. We could compensate for this but it's a nice way of surveying the Dome itself.</p>
+
+<h1>
+<a id="closing-thoughts" class="anchor" href="#closing-thoughts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Closing Thoughts</h1>
+
+<p>As always, there are still some things left to be done... But I'm quite happy how this project turned out.</p>
+
+<p>You could technically fetch and display any data you'd like to as long as it's accessible via (auhtenticated) APIs. Temboo also has a free plan with enough requests to test the choreos.</p>
+
+<p>If you're an experienced <img class="emoji" title=":snake:" alt=":snake:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f40d.png" height="20" width="20" align="absmiddle"> (Python) programmer, there might be the option to shift the bulk of the code to the linux distribution and turn the Arduino into peripheral just displaying information.
+Check the Arduino Yùn Tutorials for more information.</p>
+
+<h1>
+<a id="some-pictures" class="anchor" href="#some-pictures" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Some pictures</h1>
+
+<p><img src="img/closeup_top.jpg" alt="Closeup top"></p>
+
+<p><img src="img/infodome_light.jpg" alt="Turned off"></p>
+
+<p><img src="img/back.jpg" alt="Backside"></p>
+
+<p><img src="img/sensor.jpg" alt="Sensor"></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/danielkummer/infoDome">Infodome</a> is maintained by <a href="https://github.com/danielkummer">danielkummer</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-71961900-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
