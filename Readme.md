@@ -44,7 +44,7 @@ Here's the short form:
 
  - Reset the wifi if joining a new network using the Wifi reset button:
 
-![Yun mini diagram](/res/yun_mini_diagram_back.jpg)
+![Yun mini diagram](res/yun_mini_diagram_back.jpg)
 
 - Press and hold for 5 seconds until the blue WLAN led starts blinking.
 - In factory reset mode, the default IP address is _192.168.240.1_
@@ -55,7 +55,7 @@ Note that restoring the WiFi configuration will cause the reboot of the linux en
 
 ### Temboo Account Data
 
-In order to authenticate against Temboo you must download your custom TembooAccount.h header file from the Temboo website nd place it in the code directory.
+In order to authenticate against Temboo you must download your custom TembooAccount.h header file from the Temboo website and place it in the code directory.
 
 The file contains three definitions:
 
