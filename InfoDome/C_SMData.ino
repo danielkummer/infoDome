@@ -8,6 +8,9 @@ State DataUpdate() {
   if(!initialized || SMData.Timeout(TEMBOO_UPDATE_INTERVAL)) {
     tube.setBackgroundColor(Magenta);
     tube.printf("%04d", 1010);  
+    modeServoPosition = 7;
+    modeServo.write(modeServoPosition);
+    
     tube.display();
     getTembooData();
     initialized = true;

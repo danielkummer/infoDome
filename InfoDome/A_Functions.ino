@@ -85,9 +85,7 @@ void tubePulse(unsigned short pulseDuration) {
     brightness = 0;
   }
 
-  elapsedDuration += SMDisplay.Statetime(); //last enter or re-enter
-  Console.print("Pulse is: ");
-  Console.println(brightness);
+  elapsedDuration += SMDisplay.Statetime(); //last enter or re-enter  
   tube.setBrightness(brightness);
 }
 
@@ -152,20 +150,20 @@ void getTembooData() {
   GetCombinedChoreo.setAccountName(TEMBOO_ACCOUNT);
   GetCombinedChoreo.setAppKeyName(TEMBOO_APP_KEY_NAME);
   GetCombinedChoreo.setAppKey(TEMBOO_APP_KEY);
-  GetCombinedChoreo.setChoreo("/Choreos/CollectedChoreos");
+  GetCombinedChoreo.setChoreo(F("/Choreos/CollectedChoreos"));
   GetCombinedChoreo.run();
   while (GetCombinedChoreo.available()) {
     String name = GetCombinedChoreo.readStringUntil('\x1F');
     name.trim(); // use “trim” to get rid of newlines
     String data = GetCombinedChoreo.readStringUntil('\x1E');
     data.trim(); // use “trim” to get rid of newlines
-    if (name == "totalEmailCount") {      
+    if (name == F("totalEmailCount")) {      
       mailCount = data.toInt();
-    } else if (name == "totalJiraTickets") {      
+    } else if (name == F("totalJiraTickets")) {      
       jiraCount = data.toInt();
-    } else if (name == "totalMergeRequests") {      
+    } else if (name == F("totalMergeRequests")) {      
       gitCount = data.toInt();
-    } else if (name == "currentTime") {          
+    } else if (name == F("currentTime")) {          
       updateTime(data);      
     }
   }

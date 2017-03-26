@@ -9,16 +9,18 @@
 #include <Bridge.h>
 #include <Temboo.h>
 #include "TembooAccount.h"
+#include <Servo.h>
+
 
 typedef struct {
   short pulse;
   uint32_t color;
 } ambientSetting;
 
-#define DETECTION_PIN                 A1   
-#define DETECTION_DISTANCE_THRESHOLD  380   
+#define DETECTION_PIN                 A1
+#define DETECTION_DISTANCE_THRESHOLD  380
 #define NIXIE_COUNT                   4
-  
+
 #define TIME_MODE 0
 #define DATE_MODE 1
 #define TEMP_MODE 2
@@ -26,7 +28,7 @@ typedef struct {
 #define GIT_MODE  4
 #define JIRA_MODE 5
 #define CYCLING_MODE 6 //all modes starting here are not part of the cycling process
-#define BOOT_MODE 7 
+#define BOOT_MODE 7
 
 RTC_DS1307 rtc;
 Adafruit_BMP085_Unified bmp = Adafruit_BMP085_Unified(10085);
@@ -48,10 +50,18 @@ short lastMailCount = -1;
 
 bool isCycling = false;
 
+//Prototype declarations
+State DisplayStartup();
+State AmbientStartup();
+State DataUpdate();
+State Detect();
+State CyclerOn();
+State Boot();
+
 
 SM SMDisplay(DisplayStartup);
 SM SMAmbient(AmbientStartup);
-SM SMData(DataUpdate); 
+SM SMData(DataUpdate);
 SM SMDetect(Detect);
 SM SMCycler(CyclerOn);
 SM SMMaster(Boot);
@@ -71,22 +81,31 @@ ambientSetting ambientSettings[6] = {
   {0, strip.Color(255, 255, 255)},  // Mail
 };
 
+
+Servo modeServo;  
+unsigned short modeServoPosition = 0;    
+
+//the last position is reserved for data upload and manually set in the SMData function
+//unsigned short servoPositions[8] = {5, 25, 51 , 77, 102, 129, 154, 175};
+unsigned short servoPositions[8] = {10, 30, 50 , 70, 90, 110, 130, 150};
+
 void setup() {
-  Bridge.begin();  
-  Wire.begin();  
-  Console.begin(); 
+  Bridge.begin();
+  Wire.begin();
+
   rtc.begin();
-  if (!rtc.isrunning()) {    
-    rtc.adjust(DateTime(F(__DATE__), F(__TIME__))); //todo set rtc by service call  
+  if (!rtc.isrunning()) {
+    rtc.adjust(DateTime(F(__DATE__), F(__TIME__))); //todo set rtc by service call
   }
   tube.setBrightness(0x20); // brightness control, 0x00(off)-0xff - reduce brightness for increased lifetime
-  tube.display();   
-  pinMode(DETECTION_PIN, INPUT); 
-  strip.begin();   
-  i2cModulesRunning = checkI2cModules();    
+  tube.display();
+  pinMode(DETECTION_PIN, INPUT);
+  strip.begin();
+  i2cModulesRunning = checkI2cModules();
+  modeServo.attach(9);
 }
 
-void loop() {  
-  EXEC(SMMaster);
+void loop() {
+  EXEC(SMMaster);  
 }
 

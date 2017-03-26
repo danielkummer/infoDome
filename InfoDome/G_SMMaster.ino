@@ -22,6 +22,11 @@ State Run() {
   EXEC(SMAmbient);
   EXEC(SMData);        
 
+  if (modeServoPosition != servoPositions[currentMode]) {
+    modeServoPosition = servoPositions[currentMode];
+    modeServo.write(modeServoPosition);
+  }
+
  if(isCycling) {    
     EXEC(SMCycler);
     if(SMCycler.Finished) { SMCycler.Restart(); }
